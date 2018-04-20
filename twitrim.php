@@ -25,15 +25,26 @@ if( empty($tweets) ){
 	exit;
 }
 
+$dryRun = ( isset($argv[1]) && $argv[1] === "n" ) ? true : false;
 foreach($tweets as $i){
-	deleteTweet($connection, $i);
+	deleteTweet($connection, $i, $dryRun);
 }
 
 /**
  * @param object $connection
  * @param object $tweet
+ * @param boolean $dryRun
  */
-function deleteTweet($connection, $tweet){
+function deleteTweet($connection, $tweet, $dryRun){
+	if( $dryRun ){
+		echo "Will be deleted:\n";
+		var_dump([
+			"id" => $tweet->id,
+			"created_at" => $tweet->created_at,
+			"text" => $tweet->text
+		]);
+		return;
+	}
 	$result = $connection->post("statuses/destroy", [
 		"id" => $tweet->id
 	]);
