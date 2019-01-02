@@ -1,6 +1,6 @@
 # php-twitrim
 
-DELETE old tweets.
+Script to delete old tweets.
 
 ## How to use
 
@@ -12,7 +12,7 @@ $ vi config.json
 $ docker run -it --rm -v $(pwd):/app php:7.2 php /app/twitrim.php
 ```
 
-IF you want to check what will be deleted, you can use `n` arg to do a dry run.
+If you want to check what will be deleted, you can use `n` arg to do a dry run.
 
 ```
 $ docker run -it --rm -v $(pwd):/app php:7.2 php /app/twitrim.php n
